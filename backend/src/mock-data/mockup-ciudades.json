@@ -1,5 +1,0 @@
-[
-  { "id": 1, "descripcion": "Ciudad 1", "id_provincia": 1 },
-  { "id": 2, "descripcion": "Ciudad 2", "id_provincia": 1 },
-  { "id": 3, "descripcion": "Ciudad 3", "id_provincia": 2 }
-]

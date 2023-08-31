@@ -2,19 +2,9 @@ import { repository } from "@loopback/repository";
 import { param, get, post, put, del, requestBody } from "@loopback/rest";
 // import { ProvinciaRepository } from "../repositories/provincia.repository";
 import { Provincia } from "../models";
-
-const MOCK_PROVINCIAS = {
-  provincias: [
-    { id: 1, descripcion: "Provincia 1" },
-    { id: 2, descripcion: "Provincia 2" },
-    { id: 3, descripcion: "Provincia 3" },
-  ],
-};
-
+import { MOCK_PROVINCIAS } from "../mock-data/mockup-provincias";
 export class ProvinciaController {
-  constructor() // @repository(ProvinciaRepository)
-  // public provinciaRepository: ProvinciaRepository
-  {}
+  constructor() {} // public provinciaRepository: ProvinciaRepository // @repository(ProvinciaRepository)
 
   @get("/provincias")
   async getAllProvincias(): Promise<any> {

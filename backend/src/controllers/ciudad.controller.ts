@@ -2,18 +2,10 @@ import { repository } from "@loopback/repository";
 import { param, get, post, put, del, requestBody } from "@loopback/rest";
 // import { CiudadRepository } from "../repositories/ciudad.repository";
 import { Ciudad } from "../models";
-
-const MOCK_CIUDADES = {
-  ciudades: [
-    { id: 1, descripcion: "Ciudad 1", id_provincia: 1 },
-    { id: 2, descripcion: "Ciudad 2", id_provincia: 1 },
-    { id: 3, descripcion: "Ciudad 3", id_provincia: 2 },
-  ],
-};
+import { MOCK_CIUDADES } from "../mock-data/mockup-ciudades";
 
 export class CiudadController {
-  constructor() // public ciudadRepository: CiudadRepository // @repository(CiudadRepository)
-  {}
+  constructor() {} // public ciudadRepository: CiudadRepository // @repository(CiudadRepository)
 
   @get("/ciudades")
   async getAllCiudades(): Promise<any> {
