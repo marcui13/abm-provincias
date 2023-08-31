@@ -1,15 +1,5 @@
 [
-    {
-      "nombre": "Ciudad A",
-      "id_provincia": "1"
-    },
-    {
-      "nombre": "Ciudad B",
-      "id_provincia": "1"
-    },
-    {
-      "nombre": "Ciudad C",
-      "id_provincia": "2"
-    }
-  ]
-  
+  { "id": 1, "descripcion": "Ciudad 1", "id_provincia": 1 },
+  { "id": 2, "descripcion": "Ciudad 2", "id_provincia": 1 },
+  { "id": 3, "descripcion": "Ciudad 3", "id_provincia": 2 }
+]

@@ -1,19 +1,22 @@
-import {BootMixin} from '@loopback/boot';
-import {ApplicationConfig} from '@loopback/core';
+import { BootMixin } from "@loopback/boot";
+import { ApplicationConfig, Application } from "@loopback/core";
 import {
   RestExplorerBindings,
   RestExplorerComponent,
-} from '@loopback/rest-explorer';
-import {RepositoryMixin} from '@loopback/repository';
-import {RestApplication} from '@loopback/rest';
-import {ServiceMixin} from '@loopback/service-proxy';
-import path from 'path';
-import {MySequence} from './sequence';
+} from "@loopback/rest-explorer";
+import { RepositoryMixin } from "@loopback/repository";
+import { RestApplication } from "@loopback/rest";
+import { ServiceMixin } from "@loopback/service-proxy";
+import path from "path";
+import { MySequence } from "./sequence";
 
-export {ApplicationConfig};
+// Importa el servicio MockDataService
+import { MockDataService } from "./services/mock-data.service";
+
+export { ApplicationConfig };
 
 export class BackendApplication extends BootMixin(
-  ServiceMixin(RepositoryMixin(RestApplication)),
+  ServiceMixin(RepositoryMixin(RestApplication))
 ) {
   constructor(options: ApplicationConfig = {}) {
     super(options);
@@ -22,11 +25,11 @@ export class BackendApplication extends BootMixin(
     this.sequence(MySequence);
 
     // Set up default home page
-    this.static('/', path.join(__dirname, '../public'));
+    this.static("/", path.join(__dirname, "../public"));
 
     // Customize @loopback/rest-explorer configuration here
     this.configure(RestExplorerBindings.COMPONENT).to({
-      path: '/explorer',
+      path: "/explorer",
     });
     this.component(RestExplorerComponent);
 
@@ -35,10 +38,13 @@ export class BackendApplication extends BootMixin(
     this.bootOptions = {
       controllers: {
         // Customize ControllerBooter Conventions here
-        dirs: ['controllers'],
-        extensions: ['.controller.js'],
+        dirs: ["controllers"],
+        extensions: [".controller.js"],
         nested: true,
       },
     };
+
+    // Configura la inyección de dependencias para el servicio MockDataService
+    this.bind("services.MockDataService").toClass(MockDataService);
   }
 }

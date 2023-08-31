@@ -3,22 +3,23 @@ import { Entity, model, property } from "@loopback/repository";
 @model({ settings: { strict: false } })
 export class Ciudad extends Entity {
   @property({
-    type: "string",
-    required: true,
+    type: "number",
+    id: true,
+    generated: true,
   })
-  nombre: string;
+  id: number;
 
   @property({
     type: "string",
     required: true,
   })
-  id_provincia: string;
+  descripcion: string;
 
-  // Define well-known properties here
-
-  // Indexer property to allow additional data
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [prop: string]: any;
+  @property({
+    type: "number",
+    required: true,
+  })
+  id_provincia: number;
 
   constructor(data?: Partial<Ciudad>) {
     super(data);

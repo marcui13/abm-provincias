@@ -1,11 +1,5 @@
 [
-    {
-      "nombre": "Provincia 1",
-      "codigo": "P1"
-    },
-    {
-      "nombre": "Provincia 2",
-      "codigo": "P2"
-    }
-  ]
-  
+  { "id": 1, "descripcion": "Provincia 1" },
+  { "id": 2, "descripcion": "Provincia 2" },
+  { "id": 3, "descripcion": "Provincia 3" }
+]
