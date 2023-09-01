@@ -1,1 +1,14 @@
-<p>provincia works!</p>
+<div class="provincia-container">
+    <h2>Listado de Provincias</h2>
+    <ul>
+      <li *ngFor="let provincia of provincias">
+        {{ provincia.descripcion }}
+      </li>
+    </ul>
+    
+    <h2>Crear Nueva Provincia</h2>
+    <div class="provincia-form" *ngIf="nuevaProvincia">
+      <input type="text" [(ngModel)]="nuevaProvincia.descripcion" placeholder="Nombre de la Provincia" />
+      <button (click)="crearProvincia()">Crear Provincia</button>
+    </div>
+</div>

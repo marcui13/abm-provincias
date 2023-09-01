@@ -1,1 +1,17 @@
-<p>ciudad works!</p>
+<div class="ciudad-container">
+    <h2>Listado de Ciudades</h2>
+    <ul>
+      <li *ngFor="let ciudad of ciudades">
+        {{ ciudad.descripcion }} - Provincia: {{ obtenerNombreProvincia(ciudad.id_provincia) }}
+      </li>
+    </ul>
+    
+    <h2>Crear Nueva Ciudad</h2>
+    <div class="ciudad-form" *ngIf="nuevaCiudad">
+      <input type="text" [(ngModel)]="nuevaCiudad.descripcion" placeholder="Nombre de la Ciudad" />
+      <select [(ngModel)]="nuevaCiudad.id_provincia">
+        <option *ngFor="let provincia of provincias" [value]="provincia.id">{{ provincia.descripcion }}</option>
+      </select>
+      <button (click)="crearCiudad()">Crear Ciudad</button>
+    </div>
+</div>
