@@ -1,14 +1,16 @@
 <div class="provincia-container">
-    <h2>Listado de Provincias</h2>
-    <ul>
-      <li *ngFor="let provincia of provincias">
-        {{ provincia.descripcion }}
-      </li>
-    </ul>
-    
-    <h2>Crear Nueva Provincia</h2>
-    <div class="provincia-form" *ngIf="nuevaProvincia">
-      <input type="text" [(ngModel)]="nuevaProvincia.descripcion" placeholder="Nombre de la Provincia" />
-      <button (click)="crearProvincia()">Crear Provincia</button>
+  <h2>Listado de Provincias</h2>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let provincia of provincias">
+      {{ provincia.descripcion }}
+    </li>
+  </ul>
+
+  <h2>Crear Nueva Provincia</h2>
+  <div class="provincia-form" *ngIf="nuevaProvincia">
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="nuevaProvincia.descripcion" placeholder="Nombre de la Provincia" />
     </div>
+    <button class="btn btn-primary" (click)="crearProvincia()">Crear Provincia</button>
+  </div>
 </div>
