@@ -16,34 +16,60 @@ export class CiudadComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
+    this.apiService.getProvincias().subscribe((data) => {
+      this.provincias = data;
+      // console.log(data);
+    });
+    this.cargarCiudades()
+      .then(() => {
+        this.crearNuevaCiudad();
+      })
+      .catch((error) => {
+        console.log('Error al cargar ciudades', error);
+      });
+  }
+
+  crearNuevaCiudad() {
+    const maxId = this.ciudades.reduce((max, ciudad) => {
+      return ciudad.id > max ? ciudad.id : max;
+    }, 0);
     this.nuevaCiudad = {
-      id: 0,
+      id: maxId + 1,
       descripcion: '',
       id_provincia: 0,
     };
-    this.apiService.getProvincias().subscribe((data) => {
-      this.provincias = data;
-      console.log(data);
-    });
-    this.cargarCiudades();
   }
 
-  cargarCiudades(): void {
-    this.apiService.getCiudades().subscribe((data) => {
-      this.ciudades = data;
-      console.log(data);
+  cargarCiudades(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.apiService.getCiudades().subscribe(
+        (data) => {
+          this.ciudades = data;
+          resolve();
+        },
+        (error) => {
+          reject(error);
+        }
+      );
     });
   }
 
   crearCiudad(): void {
     if (this.nuevaCiudad) {
+      const idProvinciaNumero = Number(this.nuevaCiudad.id_provincia);
+      this.nuevaCiudad = {
+        id: this.nuevaCiudad.id,
+        descripcion: this.nuevaCiudad.descripcion,
+        id_provincia: idProvinciaNumero,
+      };
       this.apiService.createCiudad(this.nuevaCiudad).subscribe(() => {
-        this.nuevaCiudad = {
-          id: 0,
-          descripcion: '',
-          id_provincia: 0,
-        };
-        this.cargarCiudades();
+        this.cargarCiudades()
+          .then((result) => {
+            this.crearNuevaCiudad();
+          })
+          .catch((error) => {
+            console.log('Error al cargar ciudades', error);
+          });
       });
     }
   }
