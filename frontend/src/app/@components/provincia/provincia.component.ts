@@ -11,6 +11,7 @@ export class ProvinciaComponent implements OnInit {
   provincias: Provincia[] = [];
   nuevaProvincia!: Provincia | null;
   provinciaSeleccionada: Provincia | null = null;
+  provinciaEdit: Provincia | null = null;
 
   constructor(private apiService: ApiService) {}
 
@@ -80,14 +81,34 @@ export class ProvinciaComponent implements OnInit {
     }
   }
 
-  eliminarProvincia(): void {
-    if (this.provinciaSeleccionada) {
+  eliminarProvincia(provincia: Provincia): void {
+    if (
+      confirm(
+        `¿Estás seguro de eliminar la provincia "${provincia.descripcion}"?`
+      )
+    ) {
+      this.apiService.deleteProvincia(provincia.id).subscribe(() => {
+        this.cargarProvincias();
+      });
+    }
+  }
+
+  editarProvincia(provincia: Provincia): void {
+    this.provinciaEdit = { ...provincia }; // Clonar la provincia para editarla sin afectar la original
+  }
+
+  guardarCambiosProvincia(): void {
+    if (this.provinciaEdit) {
       this.apiService
-        .deleteProvincia(this.provinciaSeleccionada.id)
+        .updateProvincia(this.provinciaEdit.id, this.provinciaEdit)
         .subscribe(() => {
-          this.provinciaSeleccionada = null;
+          this.provinciaEdit = null;
           this.cargarProvincias();
         });
     }
+  }
+
+  cancelarEdicion() {
+    this.provinciaEdit = null;
   }
 }

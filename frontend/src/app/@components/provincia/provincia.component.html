@@ -1,8 +1,12 @@
 <div class="provincia-container">
-  <h2>Listado de Provincias</h2>
+  <h2>Provincias</h2>
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let provincia of provincias">
+    <li class="list-group-item" *ngFor="let provincia of provincias" style="display: flex;justify-content: space-between;">
       {{ provincia.descripcion }}
+      <div>
+        <button class="btn btn-danger" (click)="eliminarProvincia(provincia)">X</button>
+        <button class="btn btn-primary" (click)="editarProvincia(provincia)">Editar</button>
+      </div>
     </li>
   </ul>
 
@@ -11,6 +15,17 @@
     <div class="form-group">
       <input type="text" class="form-control" [(ngModel)]="nuevaProvincia.descripcion" placeholder="Nombre de la Provincia" />
     </div>
-    <button class="btn btn-primary" (click)="crearProvincia()">Crear Provincia</button>
+    <button class="btn btn-success" (click)="crearProvincia()">Crear Provincia</button>
+  </div>
+
+  <div *ngIf="provinciaEdit">
+    <h2>Editar Provincia</h2>
+    <div class="provincia-form">
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="provinciaEdit.descripcion" placeholder="Nombre de la Provincia" />
+      </div>
+      <button class="btn btn-primary" (click)="guardarCambiosProvincia()">Guardar Cambios</button>
+      <button class="btn btn-danger" (click)="cancelarEdicion()">Cancelar</button>
+    </div>
   </div>
 </div>

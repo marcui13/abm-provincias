@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Ciudad } from '../../@models/ciudad.model';
 import { ApiService } from '../../@services/api.service';
 import { Provincia } from 'src/app/@models/provincia.model';
@@ -13,6 +13,10 @@ export class CiudadComponent implements OnInit {
   nuevaCiudad!: Ciudad | null;
   ciudadSeleccionada: Ciudad | null = null;
   provincias: Provincia[] = [];
+  elementoSeleccionado: Ciudad | null = null;
+  ciudadEdit: Ciudad | null = null;
+  @ViewChild('modalEdicion') modalEdicion!: ElementRef; // Obtener referencia al modal
+
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
@@ -89,10 +93,11 @@ export class CiudadComponent implements OnInit {
     }
   }
 
-  eliminarCiudad(): void {
-    if (this.ciudadSeleccionada) {
-      this.apiService.deleteCiudad(this.ciudadSeleccionada.id).subscribe(() => {
-        this.ciudadSeleccionada = null;
+  eliminarCiudad(ciudad: Ciudad): void {
+    if (
+      confirm(`¿Estás seguro de eliminar la ciudad "${ciudad.descripcion}"?`)
+    ) {
+      this.apiService.deleteCiudad(ciudad.id).subscribe(() => {
         this.cargarCiudades();
       });
     }
@@ -107,5 +112,30 @@ export class CiudadComponent implements OnInit {
     return provinciaEncontrada
       ? provinciaEncontrada.descripcion
       : 'Provincia no encontrada';
+  }
+
+  editarCiudad(ciudad: Ciudad): void {
+    this.ciudadEdit = { ...ciudad }; // Clonar la ciudad para editarla sin afectar la original
+  }
+
+  guardarCambiosCiudad(): void {
+    if (this.ciudadEdit) {
+      const idProvinciaNumero = Number(this.ciudadEdit.id_provincia);
+      this.ciudadEdit = {
+        id: this.ciudadEdit.id,
+        descripcion: this.ciudadEdit.descripcion,
+        id_provincia: idProvinciaNumero,
+      };
+      this.apiService
+        .updateCiudad(this.ciudadEdit.id, this.ciudadEdit)
+        .subscribe(() => {
+          this.ciudadEdit = null;
+          this.cargarCiudades();
+        });
+    }
+  }
+
+  cancelarEdicion() {
+    this.ciudadEdit = null;
   }
 }
