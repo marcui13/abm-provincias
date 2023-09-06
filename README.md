@@ -29,3 +29,40 @@ Antes de ejecutar la aplicación, asegúrate de tener instalado lo siguiente:
 git clone https://github.com/tuusuario/abm-ciudades-provincias.git
 cd abm-ciudades-provincias
 ```
+
+2. Instala las dependencias necesarias ejecutando el siguiente comando en la raíz del proyecto:
+
+```
+npm i
+```
+
+3. Para levantar el servidor backend, abre la carpeta 'backend' en la terminal y ejecuta:
+
+```
+cd backend
+npm start
+```
+
+4. Para iniciar la aplicación frontend, abre la carpeta 'frontend' en la terminal y ejecuta:
+
+```
+cd frontend
+ng serve
+```
+
+## Acceso a la Aplicación
+
+Puedes acceder a la aplicación utilizando los siguientes usuarios y contraseñas:
+
+```
+  username: "John Doe"
+  password: "11223344"
+
+  username: "Jose Pepe"
+  password: "12345678"
+
+  username: "Sergio Lopez"
+  password: "5667788"
+```
+
+Se planea implementar la protección de las rutas con un middleware en el backend en futuras versiones del proyecto.
