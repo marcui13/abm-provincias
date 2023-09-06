@@ -27,7 +27,7 @@ Antes de ejecutar la aplicación, asegúrate de tener instalado lo siguiente:
 1. Clona este repositorio en tu máquina local.
 
 ```bash
-git clone [https://github.com/tuusuario/abm-ciudades-provincias.git](https://github.com/marcui13/abm-provincias.git)
+git clone https://github.com/marcui13/abm-provincias.git
 cd abm-provincias
 ```
 
