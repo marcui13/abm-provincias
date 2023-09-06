@@ -4,6 +4,7 @@ Este proyecto es una aplicación web para la gestión de ciudades y provincias. 
 
 ## Funcionalidades
 
+- **Inicio de Sesión y Autenticación:** Los usuarios pueden iniciar sesión con sus credenciales almacenadas y se les genera un token JWT para la autenticación posterior.
 - **Gestión de Ciudades:** Agregar, editar, eliminar y ver una lista de ciudades.
 - **Gestión de Provincias:** Agregar, editar, eliminar y ver una lista de provincias.
 - **Asociación entre Ciudades y Provincias:** Cada ciudad está asociada a una provincia.
