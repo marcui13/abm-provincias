@@ -31,24 +31,20 @@ git clone https://github.com/marcui13/abm-provincias.git
 cd abm-provincias
 ```
 
-2. Instala las dependencias necesarias ejecutando el siguiente comando en la raíz del proyecto:
-
-```
-npm i
-```
-
-3. Para levantar el servidor backend, abre la carpeta 'backend' en la terminal y ejecuta:
+2. Para instalar las dependencias necesarias y levantar el servidor backend, ejecuta en la raíz del proyecto:
 
 ```
 cd backend
+npm i
 npm start
 ```
 
-4. Para iniciar la aplicación frontend, abre la carpeta 'frontend' en la terminal y ejecuta:
+3. Para instalar las dependencias necesarias e iniciar la aplicación frontend, ejecuta en la raíz del proyecto:
 
 ```
 cd frontend
-ng serve
+npm i
+npm start
 ```
 
 ## Acceso a la Aplicación
