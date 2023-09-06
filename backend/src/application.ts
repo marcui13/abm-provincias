@@ -10,9 +10,6 @@ import { ServiceMixin } from "@loopback/service-proxy";
 import path from "path";
 import { MySequence } from "./sequence";
 
-// Importa el servicio MockDataService
-import { MockDataService } from "./services/mock-data.service";
-
 export { ApplicationConfig };
 
 export class BackendApplication extends BootMixin(
@@ -43,8 +40,5 @@ export class BackendApplication extends BootMixin(
         nested: true,
       },
     };
-
-    // Configura la inyección de dependencias para el servicio MockDataService
-    this.bind("services.MockDataService").toClass(MockDataService);
   }
 }
